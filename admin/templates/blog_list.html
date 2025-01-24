@@ -1,0 +1,17 @@
+<!-- Django-Blog-master/admin/templates/admin/blog_list.html -->
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>Your Blog Posts</h1>
+<ul>
+    {% for blog in blogs %}
+        <li>
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.content|truncatewords:30 }}</p>  <!-- Display a snippet of the content -->
+            <a href="{% url 'blog_detail' blog.id %}">Read more</a>  <!-- Link to the blog detail page -->
+        </li>
+    {% empty %}
+        <li>No blogs available.</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Sign Up</legend>
+                <div class="form-row">
+                    <div class="col">
+                        {{ user_form.username|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ user_form.email|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        {{ user_form.first_name|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ user_form.last_name|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        {{ profile_form.contact_number|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ profile_form.image|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" required>
+                    </div>
+                </div>
+            </fieldset>
+            <button class="btn btn-outline-info" type="submit">Signin</button>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Login</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

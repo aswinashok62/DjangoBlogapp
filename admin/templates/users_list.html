@@ -1,0 +1,109 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="container py-5">
+        <!-- Title Section -->
+        <div class="text-center mb-4">
+            <div class="p-3 bg-dark text-white rounded">
+                <h2>Registered Users</h2>
+            </div>
+        </div>
+
+        <!-- Users List Section -->
+        <div class="card shadow-lg">
+            <div class="card-body">
+                {% if users %}
+                    <ul class="list-group">
+                        {% for user in users %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ user.username }}</span> <!-- Display username -->
+                                <div>
+                                    <form action="{% url 'block_user' user.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-warning btn-sm">Block</button> <!-- Block button -->
+                                    </form>
+                                    <button type="button" class="btn btn-danger btn-sm">Remove</button> <!-- Remove button -->
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- Pagination -->
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            {% if users.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ users.previous_page_number }}">Previous</a>
+                                </li>
+                            {% endif %}
+                            {% for num in users.paginator.page_range %}
+                                <li class="page-item {% if users.number == num %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if users.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ users.next_page_number }}">Next</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% else %}
+                    <p class="text-center text-muted">No registered users found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
+
+        .btn-warning {
+            color: #fff;
+            background-color: #ffc107;
+            border-color: #ffc107;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+
+        .btn-danger {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-danger:hover {
+            background-color: #bd2130;
+            border-color: #b21f2d;
+        }
+
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bg-dark {
+            background-color: #000 !important;
+        }
+
+        .pagination .active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+{% endblock content %}
