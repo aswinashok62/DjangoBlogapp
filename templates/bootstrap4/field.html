@@ -2,7 +2,7 @@
 
 <div class="form-group{% if field.errors %} has-error{% endif %}">
     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-    {{ field|as_widget(attrs={'class': 'form-control'}) }}
+    {{ field }}  <!-- Render the field directly -->
     {% if field.errors %}
         <div class="invalid-feedback">
             {{ field.errors|striptags }}
