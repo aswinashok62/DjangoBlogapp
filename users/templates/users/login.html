@@ -1,13 +1,24 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Log In</legend>
-                {{ form|crispy }}
+
+                <!-- Username field -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" required>
+                </div>
+
+                <!-- Password field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
             </fieldset>
+            
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Login</button>
                 <small class="text-muted ml-2">
@@ -15,6 +26,7 @@
                 </small>
             </div>
         </form>
+
         <div class="border-top pt-3">
             <small class="text-muted">
                 Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
