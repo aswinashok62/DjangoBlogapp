@@ -44,7 +44,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'blog-home' %}"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
           </li>
-          <a href="{% url 'admin-login' %}" class="btn text-white m-2"><i class="fas fa-lock"></i> Admin Login</a>
+          <!-- <a href="{% url 'admin-login' %}" class="btn text-white m-2"><i class="fas fa-lock"></i> Admin Login</a> -->
         </ul>
 
         {% if user.is_authenticated %}
@@ -58,6 +58,7 @@
           </button>
         </form>
         {% else %}
+        <a href="{% url 'admin-login' %}" class="btn text-white m-2"><i class="fas fa-lock"></i> Admin Login</a>
         <a href="{% url 'login' %}" class="btn text-white m-2"><i class="fas fa-user-tie"></i> Log In</a>
         <a href="{% url 'register' %}" class="btn text-white m-2"><i class="fas fa-sign-in-alt"></i> Sign Up</a>
         {% endif %}
