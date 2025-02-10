@@ -25,7 +25,13 @@ SECRET_KEY = '88-met%yvxkqz&=)r3e3%z6afahh(q+3f-kueoho@)owc0#mo3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'djangoblogapp-vick.onrender.com',  # Add your domain
+    'localhost',  # Allow localhost for local development
+    '127.0.0.1',  # Allow 127.0.0.1 for local development
+    # Add other domains if necessary
+]
+
 
 
 # Application definition
