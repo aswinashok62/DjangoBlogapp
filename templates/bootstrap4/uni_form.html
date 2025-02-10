@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 
-<form {% if form.method %}method="{{ form.method }}"{% endif %} {% if form.action %}action="{{ form.action }}"{% endif %} novalidate>
+<form method="{{ form.method|default:'POST' }}" action="{{ form.action|default:'' }}" novalidate>
     {% csrf_token %}
-    {{ form|crispy }}
+    
 </form>
